@@ -6,6 +6,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectLoading, selectError } from './redux/contactsSlice'
 import { useEffect } from 'react'
 import { fetchContacts } from './redux/contactsOps'
+import Navbar from './components/Navbar/Navbar'
+import Loader from './components/Loader/Loader' // !!!
+import HomePage from './pages/HomePage/HomePage'
+import RegistrationPage from './pages/RegistrationPage/RegistrationPage'
+import LoginPage from './pages/LoginPage/LoginPage'
+import { Route, Routes } from 'react-router'
+import ContactsPage from './pages/ContactsPage/ContactsPage'
 function App() {
   const dispatch = useDispatch()
   const loading = useSelector(selectLoading)
@@ -18,11 +25,19 @@ function App() {
   return (
     <>
       <div>
-        <h1>Phonebook</h1>
+        <Navbar />
         <ContactForm />
         <SearchBox />
-        {loading && !error && <b>Loading!!!</b>}
+        {loading && !error && <b>Loading</b>/* <Loader /> */}
         <ContactList />
+        {/*  <div>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/register" element={<RegistrationPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/contacts" element={<ContactsPage />} />
+          </Routes>
+        </div> */}
       </div>
     </>
   )
